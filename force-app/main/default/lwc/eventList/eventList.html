@@ -1,0 +1,45 @@
+<template>
+    <lightning-card
+    variant="Narrow"
+    title="Upcoming Events"
+    icon-name="standard:event">
+    <div class="slds-var-m-around_small">
+        <template if:true={errors}>
+            {errors}
+        </template>
+    </div>
+     <div class="slds-var-m-around_small">
+        <c-lwcsearchcomponent
+        search-label="Event Name"
+        show-label="true"
+        onsearch={handleSearch}
+      >
+      </c-lwcsearchcomponent>
+      &nbsp;
+      <lightning-input
+        label="Event Start date"
+        type="datetime"
+        value={startdattime}
+        onchange={handleStartDate}>
+      </lightning-input>
+      &nbsp;
+      <c-lwcsearchcomponent
+       search-label="Search Location"
+       show-label="true"
+       onsearch={handleLocationSearch}>
+      </c-lwcsearchcomponent>
+     </div>
+     
+    <div class="slds-var-m-around_small">
+        <lightning-datatable
+        key-field="id"
+        data={recordsToDisplay}
+        show-row-number-column
+        hide-checkbox-column
+        columns={columnsList}
+        onrowaction={handleRowAction}>
+        </lightning-datatable>
+    </div>
+
+    </lightning-card>
+</template>
